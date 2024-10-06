@@ -2,16 +2,16 @@ from django.shortcuts import render
 
 # Create your views here.
 def index(request):
-    return render(request, 'templates/index.html')
+    return render(request, 'index.html')
 
 def acerca_de(request):
-    return render(request, 'templates/about.html')
+    return render(request, 'about.html')
 
 def blog(request):
-    return render(request, 'templates/blog.html')
+    return render(request, 'blog.html')
 
 def contacto(request):
-    return render(request, 'templates/contact.html')
+    return render(request, 'contact.html')
 
 def post(request):
-    return render(request, 'templates/post-details.html')
+    return render(request, 'post-details.html')
