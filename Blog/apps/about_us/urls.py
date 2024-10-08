@@ -6,9 +6,9 @@ from Blog import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index.html', index, name='index'),
+    path('index/', index, name='index'),
     path('', index, name='home'),
-    path('blog.html/', blog, name='blog'),
-    path('contact.html/', contacto, name='contact'),
-    path('about.html/', acerca_de, name='about')
+    path('blog/', blog, name='blog'),
+    path('contact/', contacto, name='contact'),
+    path('acerca-de/', acerca_de, name='about')
 ]
