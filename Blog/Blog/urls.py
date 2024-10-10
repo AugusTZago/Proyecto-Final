@@ -29,5 +29,7 @@ urlpatterns = [
     path('blog/', blog, name='blog'),
     path('contact/', contacto, name='contact'),
     path('acerca-de/', acerca_de, name='about'),
-    path('detalle-posteo/', post, name='post-details')
+    path('detalle-posteo/', post, name='post-details'),
+    path('log-in/', log_in, name='log-in'),
+    path('register/', registrar, name='register')
 ]
