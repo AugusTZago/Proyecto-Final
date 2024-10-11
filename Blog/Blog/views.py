@@ -15,3 +15,8 @@ def contacto(request):
 def post(request):
     return render(request, 'post-details.html')
 
+def registrar(request):
+    return render(request, 'register.html')
+
+def log_in(request):
+    return render(request, 'login.html')
