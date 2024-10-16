@@ -1,8 +1,25 @@
+
 {% extends 'base.html' %}
 
-{% block title %} Acerca de Nosotros {% endblock %}
+{% block title %} Iniciar Sesión {% endblock %}
 
 {% block contenido %}
+
+
+
+<section class="login">
+    <div class="container">
+        <form action="">
+            <h1>Iniciar Sesión</h1>
+            <input type="email" placeholder="Correo electrónico" required>
+            <input type="password" placeholder="Contraseña" required>
+            <button>Iniciar Sesión</button>
+            <p>¿No tienes cuenta? <a href="{% url 'register' %}"></a>Regístrate</p>
+            <p>¿Olvidaste tu contraseña? <a href="{% url 'recuperar' %}">Recuperar Contraseña</a></p>
+        </form>
+    </div>
+</section>
+
 <body>
     <div class="container">
         <form action="#">
@@ -10,7 +27,8 @@
             <input type="email" placeholder="Correo electrónico" required />
             <input type="password" placeholder="Contraseña" required />
             <button>Iniciar sesión</button>
-            <p>¿No tienes cuenta? <a href="register.html">Regístrate</a></p>
+            <p>¿No tienes cuenta? <a href="{% url 'register' %}">Regístrate</a></p>
+            <p>¿Olvidaste tu contraseña? <a href="{% url 'recuperar' %}">Recuperar contraseña</a></p>
         </form>
     </div>
 </body>
