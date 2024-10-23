@@ -31,5 +31,6 @@ urlpatterns = [
     path('acerca-de/', acerca_de, name='about'),
     path('detalle-posteo/', post, name='post-details'),
     path('log-in/', log_in, name='log-in'),
-    path('register/', registrar, name='register')
+    path('register/', registrar, name='register'),
+    path('recuperar/', recuperar, name='recuperar')
 ]

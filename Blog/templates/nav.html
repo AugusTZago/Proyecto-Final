@@ -9,22 +9,23 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'index' %}">Home
+        <li class="nav-item {% if url_name == 'index' %} active {% endif %}">
+            <a class="nav-link" href="{% url 'index' %}">Inicio
             <span class="sr-only">(current)</span>
             </a>
         </li> 
-        <li class="nav-item active">
-            <a class="nav-link" href="{% url 'about' %}">About Us</a>
+        <!-- al lado de nev-item hace que aparezca seleccionado active -->
+        <li class="nav-item {% if url_name == 'about' %} active {% endif %}">
+            <a class="nav-link" href="{% url 'about' %}">Nosotros</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'blog' %}">Blog Entries</a>
+        <li class="nav-item {% if url_name == 'blog' %} active {% endif %}">
+            <a class="nav-link" href="{% url 'blog' %}">Blog</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'post-details' %}">Post Details</a>
+        <li class="nav-item {% if url_name == 'post-details' %} active {% endif %}">
+            <a class="nav-link" href="{% url 'post-details' %}">Post</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+        <li class="nav-item {% if url_name == 'contact' %} active {% endif %}">
+            <a class="nav-link" href="{% url 'contact' %}">Contacto</a>
         </li>
         </ul>
     </div>

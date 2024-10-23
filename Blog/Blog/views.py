@@ -20,3 +20,6 @@ def registrar(request):
 
 def log_in(request):
     return render(request, 'login.html')
+
+def recuperar(request):
+    return render(request, 'recuperar.html')
