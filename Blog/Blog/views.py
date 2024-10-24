@@ -18,8 +18,3 @@ def post(request):
 def registrar(request):
     return render(request, 'register.html')
 
-def log_in(request):
-    return render(request, 'login.html')
-
-def recuperar(request):
-    return render(request, 'recuperar.html')

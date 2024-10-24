@@ -19,18 +19,19 @@ from django.urls import path, include
 from .views import *
 from Blog import views
 
+
 app_name = 'blog'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', index, name='index'),
     path('', index, name='home'),
-    # path('post/', include('about_us.urls'),),
     path('blog/', blog, name='blog'),
-    path('contact/', contacto, name='contact'),
     path('acerca-de/', acerca_de, name='about'),
     path('detalle-posteo/', post, name='post-details'),
-    path('log-in/', log_in, name='log-in'),
     path('register/', registrar, name='register'),
-    path('recuperar/', recuperar, name='recuperar')
+    path('', include('apps.posteo.urls')),
+    path('', include('apps.usuario.urls')),
+    path('', include('apps.contacto.urls')),
+    path('', include('apps.comentario.urls')),
 ]

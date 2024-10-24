@@ -1,0 +1,60 @@
+{% load articulo_tags %}
+<div class="col-lg-12">
+    <div class="sidebar-item comments">
+      <div class="sidebar-heading">
+      {% with cant_comentarios=articulo.comentario_set.all|is_active|length  %}
+      {% if cant_comentarios == 0 %}
+        <h2>sin comentarios</h2>
+      {% else %}
+        <h2>{{cant_comentarios}} 
+          {%if cant_comentarios == 1%}
+            comentario
+          {%else%}
+            comentarios
+          {%endif%}</h2>
+      {% endif %}
+      {% endwith %}
+      </div>
+      <div class="content">
+        <ul>
+          {% for comentario in articulo.comentario_set.all|is_active %}
+          <li>
+            <div class="author-thumb circular--comment">
+              <img src="{{comentario.creado_por.foto_perfil.url}}" class="">
+            </div>
+            <div class="right-content">
+              <h4><a href="{% url 'usuario:perfil' pk=comentario.creado_por.id  %}">{{comentario.creado_por}}<span>{{ comentario.creado }}</span></h4></a>
+              {% if user.is_authenticated %}
+              <a onclick='showform("form-comentario{{comentario.id}}")'>
+                <small>responder</small>
+              </a>
+              {% endif %}
+              <p>{{ comentario.contenido }}</p>
+              {% if user.is_authenticated %}
+              <form id="form-comentario{{comentario.id}}" class="form-respuesta" method="post" action="{{articulo.get_responder_url}}" style="display:none;">
+                {% csrf_token %}
+                <div class="input-group">
+                  <input type="hidden" name="comentario" value="{{comentario.id}}">
+                  <input class="form-control" name="contenido" type="text" placeholder="ingrese aqui su respuesta...">
+                  <button type="submit"><small>ENVIAR</small></button>
+                </div>
+              </form>
+              {% endif %}
+            </div>
+          </li>
+          {% for respuesta in comentario.comentario_set.all|is_active %}
+          <li class="replied">
+            <div class="author-thumb circular--comment">
+              <img src="{{respuesta.creado_por.foto_perfil.url}}" alt="">
+            </div>
+            <div class="right-content">
+              <h4><a href="{% url 'usuario:perfil' pk=respuesta.creado_por.id  %}">{{respuesta.creado_por}}<span>{{ respuesta.creado }}</span></h4></a>
+              <p>{{respuesta.contenido}}</p>
+            </div>
+          </li>
+          {% endfor %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>

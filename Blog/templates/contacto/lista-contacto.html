@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block contacto_nav %} 
+<li class="nav-item active">
+{% endblock %}
+{% block contenido %}    
+<section class="call-to-action">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="main-content">
+          <div class="row">
+            <div class="col-lg-8">
+              <span>MENSAJES</span>
+              <h4>Aqui se listan todos los mensajes recibidos<p></p></h4>
+            </div>
+            <div class="col-lg-4">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-us">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="down-contact">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="sidebar-item contact-form">
+                <div class="content">
+                  <table class="table">
+                    <tr>
+                      <th><h5>ID:</h5></td>
+                      <th><h5>Fecha:</h5></td>
+                      <th><h5>Nombre:</h5></td>
+                      <th><h5>email:</h5></td>
+                      <th><h5>Asunto:</h5></td>
+                    </tr>
+                    {% for mensaje in contactos %}
+                    <tr>
+                      <td><a href="{% url 'contacto:detalle' pk=mensaje.id %}">{{forloop.counter}}</a></td>
+                      <td>{{mensaje.fecha}}</td>
+                      <td>{{mensaje.nombre_apellido}}</td>
+                      <td>{{mensaje.email}}</td>
+                      <td>{{mensaje.asunto}}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                      <td colspan="6">No hay mensajes</td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}    

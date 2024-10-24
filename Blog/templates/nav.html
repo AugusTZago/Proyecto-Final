@@ -1,34 +1,81 @@
 {% load static %}
 
 
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg navbar-static-top">
     <div class="container">
-    <a class="navbar-brand" href="index.html"><h2>Stand Blog<em>.</em></h2></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-        <li class="nav-item {% if url_name == 'index' %} active {% endif %}">
-            <a class="nav-link" href="{% url 'index' %}">Inicio
-            <span class="sr-only">(current)</span>
-            </a>
-        </li> 
-        <!-- al lado de nev-item hace que aparezca seleccionado active -->
-        <li class="nav-item {% if url_name == 'about' %} active {% endif %}">
-            <a class="nav-link" href="{% url 'about' %}">Nosotros</a>
-        </li>
-        <li class="nav-item {% if url_name == 'blog' %} active {% endif %}">
-            <a class="nav-link" href="{% url 'blog' %}">Blog</a>
-        </li>
-        <li class="nav-item {% if url_name == 'post-details' %} active {% endif %}">
-            <a class="nav-link" href="{% url 'post-details' %}">Post</a>
-        </li>
-        <li class="nav-item {% if url_name == 'contact' %} active {% endif %}">
-            <a class="nav-link" href="{% url 'contact' %}">Contacto</a>
-        </li>
-        </ul>
-    </div>
+        <a class="navbar-brand" href="{% url 'index' %}"><h2>Ciberseguridad<em>G8</em></h2></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+            <li class="nav-item {% if url_name == 'index' %} active {% endif %}">
+                <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+            </li> 
+            <!-- al lado de nev-item hace que aparezca seleccionado active -->
+            <li class="nav-item {% if url_name == 'about' %} active {% endif %}">
+                <a class="nav-link" href="{% url 'about' %}">Nosotros</a>
+            </li>
+            <li class="nav-item {% if url_name == 'post-details' %} active {% endif %}">
+                <a class="nav-link" href="{% url 'post-details' %}">Blog</a>
+            </li>
+            <li class="nav-item {% if url_name == 'contacto:contacto' %} active {% endif %}">
+                <a class="nav-link" href="{% url 'contacto:contacto' %}">Contacto</a>
+            </li>
+
+            <li class="nav-item dropdown {% if url_name == 'login' and not user.is_authenticated %} active {% endif %}">
+                {% if user.is_authenticated %}
+
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            
+                            <div class="circular--portrait"> 
+                                
+                                <img src="{{user.foto_perfil.url}}" alt="foto {{user.username}}">
+                                {% comment %} <img src="{% if user.foto_perfil %}{{ user.foto_perfil.url }}{% else %}{% static 'default.png' %}{% endif %}" alt="foto {{ user.username }}"> {% endcomment %}
+                            
+                            </div>
+                        
+                        </a>
+                        
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    
+                    <li class="dropdown-item"><a class="nav-link">¡Hola {{ user.username }}!</a></li>
+                    
+                    <li class="dropdown-item"><a class="nav-link" href="{% url 'usuario:perfil' pk=user.id %}?next={{ request.path }}">Ver perfil</a></li>
+                            
+                            {% if user.is_superuser or user.is_miembro %}
+                                
+                                <li class="dropdown-item"><a class="nav-link" href="{% url 'post:crear' %}">Publicar post</a></li>
+                                
+                                <li class="dropdown-item"><a class="nav-link" href="{% url 'post:crearCategoria' %}?next={{ request.path }}">Crear categoría</a></li>
+                            
+                            {% endif %}
+                            
+                            <li class="dropdown-item">
+                                
+                                <a class="nav-link text-danger" href="{% url 'usuario:logout' %}">Cerrar sesión</a>
+                            
+                            </li>
+                        
+                        </ul>
+                    
+                    </li>
+
+                {% else %}
+
+                    <li class="nav-item">
+                        
+                        <a class="nav-link" href="{% url 'usuario:login' %}?next={{ request.path }}">Iniciar Sesión</a>
+                
+                    </li>
+
+                {% endif %}
+            </li>
+
+            </ul>
+        </div>
     </div>
 </nav>
 

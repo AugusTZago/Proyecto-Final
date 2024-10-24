@@ -1,0 +1,51 @@
+{% extends "base.html"%}
+{% block title %} Borrar comentario {% endblock %}
+{% block contenido %}
+<section class="call-to-action">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="main-content">
+          <div class="row">
+            <div class="col-lg-8">
+              <span>Borrar</span>
+              <h4>Usted esta por borrar el comentario:</h4><p>Comentario: {{object}}</p>
+            </div>
+            <div class="col-lg-4">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="blog-posts">
+<div class="container">
+    <div class="row">
+    <div class="col-lg-12">
+        <div class="all-blog-posts">
+        <div class="row">
+            <div class="col-lg-12">
+            <div class="sidebar-item submit-comment">
+                <div class="sidebar-heading">
+                </div>
+                  <div class="content">
+                    <form method="post">{% csrf_token %}
+                    <p>Estas seguro de que quieres borrar "{{ object }}"?</p>
+                    <p>Esta accion es irreversible...</p>
+                    {{ form }}
+                    <button type="submit" id="form-submit" class="main-button">Eliminar</button>                    
+                    </form>
+                    <hr>
+                  <a href="{{next}}">volver</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
